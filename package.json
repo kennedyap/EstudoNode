@@ -1,0 +1,27 @@
+{
+  "name": "estudonode",
+  "version": "1.0.0",
+  "description": "curso",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennedyap/NodeJS.git"
+  },
+  "author": "Kennedy Anderson Panzenhagen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennedyap/NodeJS/issues"
+  },
+  "homepage": "https://github.com/kennedyap/NodeJS#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2"
+  }
+}
