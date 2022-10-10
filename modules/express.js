@@ -1,5 +1,9 @@
 const express = require("express");
 const UserModel = require("../src/models/user.model");
+const soap = require("soap");
+const { stringify, fromJSON, toJSON } = require("flatted");
+const url =
+  "https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl";
 
 const app = express();
 
@@ -83,6 +87,33 @@ app.delete("/users/:id", async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     res.status(500).send(error.message);
+  }
+});
+
+//Busca informações sobre o cep informado
+app.get("/users/cep/:cep", async (req, res) => {
+  try {
+    const pCep = req.params.cep;
+    soap.createClient(url, (err, client) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("ok");
+        client.consultaCEP(
+          {
+            cep: pCep.toString(),
+          },
+          (err, res) => {
+            console.log(toJSON(res).toString());
+            //console.log(res);
+          }
+        );
+      }
+    });
+
+    return res.status(200).json(res);
+  } catch (error) {
+    return res.status(500).send(error.message);
   }
 });
 
